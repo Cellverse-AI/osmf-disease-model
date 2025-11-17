@@ -1,0 +1,55 @@
+# Default configuration for histopathology analysis
+
+# Data configuration
+data:
+  image_size: [256, 256]  # Target size for images [height, width]
+  batch_size: 16          # Batch size for training
+  num_workers: 4          # Number of data loading workers
+  train_split: 0.8        # Train/validation split ratio
+  normalize: true         # Normalize images to [0, 1]
+
+# Model configuration
+model:
+  architecture: "cbam_unet"  # Model architecture
+  in_channels: 3             # Number of input channels (RGB)
+  out_channels: 1            # Number of output channels (binary segmentation)
+  base_channels: 32          # Base number of channels in first layer
+  depth: 4                   # Depth of U-Net (number of encoder/decoder blocks)
+
+# Training configuration
+training:
+  epochs: 50                 # Number of training epochs
+  learning_rate: 0.0001      # Learning rate for optimizer
+  optimizer: "adam"          # Optimizer type
+  loss_weights:              # Weights for combined loss
+    bce: 0.0                 # Binary cross-entropy weight
+    dice: 0.3                # Dice loss weight
+    jaccard: 0.7             # Jaccard/IoU loss weight
+  device: "cuda"             # Device to use ("cuda" or "cpu")
+  save_frequency: 5          # Save checkpoint every N epochs
+  early_stopping_patience: 10  # Early stopping patience
+
+# Path configuration
+paths:
+  data_dir: "data/"                    # Root data directory
+  train_images: "train/images/"        # Training images subdirectory
+  train_masks: "train/masks/"          # Training masks subdirectory
+  val_images: "val/images/"            # Validation images subdirectory
+  val_masks: "val/masks/"              # Validation masks subdirectory
+  checkpoint_dir: "checkpoints/"       # Checkpoint save directory
+  log_dir: "logs/"                     # Log directory
+  output_dir: "outputs/"               # Output directory for predictions
+
+# Inference configuration
+inference:
+  threshold: 0.5             # Threshold for binary segmentation
+  batch_size: 8              # Batch size for inference
+  save_format: "png"         # Output format for predictions
+
+# Analysis configuration
+analysis:
+  cell_density:
+    min_cell_size: 10        # Minimum cell size in pixels
+    max_cell_size: 1000      # Maximum cell size in pixels
+  fiber_separation:
+    stain_matrix: "default"  # H&E stain matrix ("default" or custom)
