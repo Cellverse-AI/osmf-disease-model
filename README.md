@@ -214,32 +214,9 @@ scripts/
 
 See `requirements.txt` for complete list.
 
-## Citation
 
-If you use this code in your research, please cite:
-
-```bibtex
-@software{histopath_analysis,
-  title = {Histopathology Image Analysis with CBAM U-Net},
-  author = {Your Name},
-  year = {2025},
-  url = {https://github.com/yourusername/histopath-analysis}
-}
-```
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Acknowledgments
-
-- CBAM architecture based on: Woo et al., "CBAM: Convolutional Block Attention Module", ECCV 2018
-- U-Net architecture based on: Ronneberger et al., "U-Net: Convolutional Networks for Biomedical Image Segmentation", MICCAI 2015
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## Contact
-
-For questions or issues, please open an issue on GitHub.
